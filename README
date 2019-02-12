@@ -1,5 +1,4 @@
-Nume: Dinica Ion-Robert
-Grupa: 322CB
+
 
  Pentru implementarea sistemului de fisiere/foldere am folosit
  design pattern-ul Composite. Astfel, acesta are structura unui arbore
