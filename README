@@ -1,0 +1,58 @@
+Nume: Dinica Ion-Robert
+Grupa: 322CB
+
+ Pentru implementarea sistemului de fisiere/foldere am folosit
+ design pattern-ul Composite. Astfel, acesta are structura unui arbore
+ cu mai multe frunze(in cazul de fata File,Folder), care mostenesc un 
+ caz de baza, anume root. De altfel, HeadFolder reprezinta elementele(
+ fisirele,folderele) care se vor gasi intodeauna in radacina sistemului(/).
+ In clasa principala (Main) a fost definit un ArryList cu elemente de tipul
+ HeadFolder, acesta reprezentand ,practic, baza sitemului, in care vor fi
+ introduse alte elemente. In HeadFolder este definit un ArrayList cu elemente
+ de tipul root si trei ArrayList-uri cu elemente de tipul String care au rolul
+ de a retine locul in care un folder/fisier se afla.De asemenea, aici este
+ implementata metoda care adauga un nou element in sistemul de fisiere/foldere,
+ mai exact metoda care aduga un nou elemet in ArrayList-ul din interiorul
+ HeadFolder-ului.
+
+ Pentru implementarea comenziilor s-a folosit design pattern-ul Command.Astfel,
+ acesta are rolul de incapsula request-ul(comanda) venita de la Invoker.De altfel,
+ am construit interfata numita Command(care este implementata de toate comenziile)
+ in care se afla definita metoda execute. Clasa CommandInvoker are rolul de a
+ invoca metoda execute a unei comenzi primita de la Reciver.In Reciver este
+ instantiata comanda care se doreste a fi executata prin intermediul metodei
+ createCommand din interiorul clasei CommandFactory (astfel, s-a folosit design
+ pattern-ul Factory).
+
+ In clasa MKDIR este implementata comada mkdir, care are rolul de a construi un nou
+ folder.Daca noul folder care se doreste a fi creat nu se afla in ArrayList-ul
+ cu HeadFoldere atunci acesta este introdus acolo, altfel se cauta HeadFolder-ul in
+ care se doreste creearea noului folder si va fi introdus in acesta.
+
+ In clsa PWD este implementata comanda pwd, care are rolul de a printa locul curent
+ in care ne aflam.Astfel, in situatia in care nu s-a efectuat o comada cd inseamna
+ ca ne aflam in radacina sistemului.Altfel, in siuatia in care a fost efectuata o 
+ comanda cd retin calea noului loc in care ma aflu in cdKeeper si in cazul apelarii
+ comenzii pwd se va printa continutul lui cdKeeper.
+
+ In clasa TouchC este implementata comada touch, in mod asemanator comenzii mkdir,
+ numai ca de aceasta data se va creea un fisier.
+
+ In clasa LS este implemntata comanda ls.In functie de argumentele pe care le
+ primeste aceasta comanda va efectua diferitre operatii. In cazul in care 
+ comanda primeste argumentul -R se va face listarea in ordine a tuturor 
+ elementelor din argumentul primit de comanda "ls -R".In cazul in care comanda
+ "ls -R" nu are argumente se va face listarea in ordine a tuturor elementelor
+ din ArrayList-ul de HeadFoldere. Daca comanda ls nu are argumentul -R se va
+ face listarea in ordine a elementelor din calea data ca argument comenzii ls.
+ In cazul in care aceasta comanda nu are argumente se va printa in ordine 
+ continutul ArrayList-ului de HeadFoldere.
+
+ In clasa RM este implementata comanda rm, care are rolul de a sterge un
+ element din radacina sistemului de fisiere, adica din ArrayList-ul cu 
+ elemente de tipul HeadFolder.
+
+ In clasa CommandBuilder este realizata parsarea elementelor din fisierul
+ de intrare si  apelata metoda executeCmd din clasa commandInvoker,
+ in functie de comanda care este citita din fisier.  
+ 
